@@ -45,6 +45,7 @@
 <script>
 import "swiper/dist/css/swiper.css";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
+import axios from "axios"
 
 export default {
   data(){
@@ -299,7 +300,7 @@ export default {
     swiperSlide
   },
   created(){
-    
+    axios.get();
   }
 }
 </script>
