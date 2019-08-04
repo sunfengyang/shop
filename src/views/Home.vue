@@ -45,7 +45,8 @@
 <script>
 import "swiper/dist/css/swiper.css";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
-import axios from "axios"
+import axios from "axios";
+import url from "@/service.config.js";
 
 export default {
   data(){
@@ -300,7 +301,18 @@ export default {
     swiperSlide
   },
   created(){
-    axios.get();
+    /* axios.get('https://bird.ioliu.cn/v2?url=https://api.douban.com/v2/movie/top250').then(res=>{
+        console.log(res);
+    }); */
+    let url1 = "http://www.weichuang.com/getList";
+    let url2 = "http://www.weichuang.com/getUser";
+    let url3 = "http://www.weichuang.com/regexp";
+    let url4 = "http://www.weichuang.com/list";
+    let url5 = url.getVarietyItem;
+    axios.get(url5).then(res => {
+      // console.log(res);
+      this.varietyItem = res.data;
+    });
   }
 }
 </script>
