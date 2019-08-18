@@ -9,7 +9,7 @@
     </van-tabbar>
 
     
-   <!--使用flex弹性布局实现的底部菜单栏
+   <!--使用flex布局实现的底部菜单栏
       <ul class="footer-bar">
      <li class="footer-bar-item">
        <router-link to="/">首页</router-link>
