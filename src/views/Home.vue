@@ -323,7 +323,7 @@ export default {
     background-color: #eeeeee;
   }
 
-  .carousel{//轮播图
+  .carousel{//轮播图属性
     margin-top: 1rem;
     height: 3rem;
     &-item{
