@@ -5,7 +5,7 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-//引入所有vant插件
+//引入所有vant插件（不推荐）
 //import Vant from 'vant';
 //import 'vant/lib/index.css';
 //Vue.use(Vant);
