@@ -1,4 +1,4 @@
-const MOCKURL = 'http://www.weichuang.com/'; // mock模拟
+const MOCKURL = 'http://www.weichuang.com/'; // mock模拟出的url
 const SERVERURL = 'http://localhost:3000/';//真实URL
 
 const URL = {
