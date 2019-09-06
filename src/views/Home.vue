@@ -334,7 +334,7 @@ export default {
     }
   }
 
-  .hot{//热门商品
+  .hot{//热门商品属性
     margin-top: 0.2rem;
     background-color: #fff;
     &-title{
