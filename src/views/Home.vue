@@ -356,7 +356,7 @@ export default {
     }
   }
 
-  .nav-tltle{//头
+  .nav-tltle{//头属性
     position: fixed;
     top: 0;
     left: 0;
