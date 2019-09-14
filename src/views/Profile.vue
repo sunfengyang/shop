@@ -24,9 +24,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import url from '@service.config.js';
-
+import axios from "axios";
+import url from "@/service.config.js";
 
 export default {
   data(){
@@ -38,18 +37,24 @@ export default {
     }
   },
   methods:{
-    registHandler(){
+    registHandler(){//注册处理方法
       axios({
-        url:'url.registUser',
+        url:url.registUser,
         method:'post',
         data:{
           userName:this.registUsername,
           password:this.registPassword
         }
       }).then(res=>{
-
+        if(res.data.code == 200){
+          this.$toast.success('注册成功');
+          this.registUsername=this.registPassword='';
+        }else{
+          this.$toast.fail('注册失败');
+        }
       }).catch(err=>{
-
+        console.log(err);
+        this.$toast.fail('注册失败');
       });
     },
   }
