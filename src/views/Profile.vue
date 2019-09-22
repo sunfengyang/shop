@@ -57,7 +57,7 @@ export default {
         this.$toast.fail('注册失败');
       });
     },
-    loginHandler(){//登录处理方法
+    loginHandler(){//登录处理方法...
       axios({
         url:url.loginUser,
         method:post,
