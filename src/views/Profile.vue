@@ -37,7 +37,7 @@ export default {
     }
   },
   methods:{
-    registHandler(){//注册处理方法
+    registHandler(){//注册处理方法..
       axios({
         url:url.registUser,
         method:'post',
