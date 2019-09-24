@@ -26,6 +26,8 @@
 <script>
 import axios from "axios";
 import url from "@/service.config.js";
+import { resolve } from 'dns';
+import { reject } from 'q';
 
 export default {
   data(){
@@ -66,9 +68,23 @@ export default {
           password:this.loginPassword
         }
       }).then(res=>{
-
+          console.log(res);
+          if(res.data.code==200){
+            new Promise((resolve,reject)=>{//对异步操作进行管理
+              setTimeout(()=>{
+                resolve();
+              },1000);
+            }).then(()=>{
+              this.$toast.success('登录成功');
+              this.$router.push('/');
+            }).catch(err=>{
+              this.$toast.fail('保存状态失败');
+              console.log(err);
+            });
+          }
       }).catch(err=>{
-
+          console.log(err);
+          this.$toast.fail('登录失败');
       });
     },
   }

@@ -4,13 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+  state: {//存储数据
 
   },
-  mutations: {
+  getters:{//经常用于数据筛选，多个数据相关计算
 
   },
-  actions: {
+  mutations: {//方法，改变state数据的唯一途径，不能处理异步操作
+
+  },
+  actions: {//提交mutations改变状态，可以包含异步操作
 
   }
 })
