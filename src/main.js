@@ -11,8 +11,8 @@ Vue.config.productionTip = false
 //Vue.use(Vant);
 
 //按需引入插件（更为推荐）
-import {Toast,NavBar,Icon,Tabbar,TabbarItem,Swipe,SwipeItem,Lazyload,Tab,Tabs,CellGroup,Field,Button} from 'vant';
-Vue.use(Toast).use(NavBar).use(Icon).use(Tabbar).use(TabbarItem).use(Swipe).use(SwipeItem).use(Lazyload).use(Tab).use(Tabs).use(CellGroup).use(Field).use(Button);
+import {Row,Col,Toast,NavBar,Icon,Tabbar,TabbarItem,Swipe,SwipeItem,Lazyload,Tab,Tabs,CellGroup,Field,Button} from 'vant';
+Vue.use(Row).use(Col).use(Toast).use(NavBar).use(Icon).use(Tabbar).use(TabbarItem).use(Swipe).use(SwipeItem).use(Lazyload).use(Tab).use(Tabs).use(CellGroup).use(Field).use(Button);
 
 import '@/assets/css/reset.css'
 import '@/assets/js/rem.js'

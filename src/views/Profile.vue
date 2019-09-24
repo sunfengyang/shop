@@ -26,8 +26,7 @@
 <script>
 import axios from "axios";
 import url from "@/service.config.js";
-import { resolve } from 'dns';
-import { reject } from 'q';
+import {mapActions} from 'vuex';//映射
 
 export default {
   data(){
@@ -39,6 +38,7 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['loginAction']),
     registHandler(){//注册处理方法..
       axios({
         url:url.registUser,
@@ -76,6 +76,7 @@ export default {
               },1000);
             }).then(()=>{
               this.$toast.success('登录成功');
+              this.loginAction(res.data.userInfo);//保存登录状态
               this.$router.push('/');
             }).catch(err=>{
               this.$toast.fail('保存状态失败');
