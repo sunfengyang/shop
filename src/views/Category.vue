@@ -5,52 +5,143 @@
       <van-row>
         <van-col span="6" class="nav">
           <ul>
-            <li v-for="(item,index) in types" :key="index">
-              {{item.typeName}}
-            </li>
+            <li
+              @click="selectCategory(item.typeId,index)"
+              :class="{active:active==index}"
+              v-for="(item,index) in types"
+              :key="index"
+            >{{item.typeName}}</li>
           </ul>
         </van-col>
         <van-col span="18" class="container">
-
+          <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+            <van-list class="content" @load="onload" :finished="finished">
+              <div class="content-item" v-for="(item,index) in productList" :key="index">
+                <img :src="item.img" alt />
+                <p class="content-item-name">{{item.name}}</p>
+                <p>￥{{item.price}}</p>
+              </div>
+            </van-list>
+          </van-pull-refresh>
         </van-col>
       </van-row>
-
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import url from '@/service.config.js'
+import axios from "axios";
+import url from "@/service.config.js";
 
 export default {
-  data(){
+  data() {
     return {
-      types:[],
-    }
+      types: [], //类型信息
+      active: 0,
+      productList: [],
+      typeId: 1, //当前选中类型的id
+      start: 0,
+      limit: 10,
+      finished: false,//数据是否取完
+      isLoading:false,//上拉加载
+
+    };
   },
-  created(){
+  created() {
     axios({
-      url:url.getTypes,
-    }).then(res=>{
-      console.log(res);
-      this.types = res.data;
-    }).catch(err=>{
-      console.log(err)
-    });
+      url: url.getTypes
+    })
+      .then(res => {
+        console.log(res);
+        this.types = res.data;
+        this.selectCategory(this.typeId, this.active);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  methods: {
+    selectCategory(typeId, index) {
+      this.active = index;
+      this.typeId = typeId;
+      this.productList = [];
+      this.finished = false;
+      this.getProductList();
+    },
+    getProductList() {
+      this.isLoading=true;
+      axios({
+        url: url.getProductsByType,
+        method: get,
+        params: {
+          typeId: this.typeId,
+          start: this.productList.length,
+          limit: this.limit
+        }
+      })
+        .then(res => {
+          //console.log(res);
+          if (res.data.length != 0) {
+            this.productList = this.productList.concat(res.data);
+          } else {
+            this.finished = true;
+          }
+          this.isLoading=false;
+        })
+        .catch(err => {});
+    },
+    onload() {
+      this.getProductList();
+    },
+    onRefresh(){
+      this.productList=[];
+      this.getProductList();
+
+    }
   }
-}
+};
 </script>
 
 <style lang="scss">
-.nav{
+.nav {
   background-color: #eee;
-  li{
+  li {
     height: 0.6rem;
     line-height: 0.6rem;
     border-bottom: 1px solid #fff;
     padding: 3px;
     text-align: center;
+  }
+  .active {
+    background: #ffffff;
+  }
+}
+.container {
+  position: fixed;
+  top: 46px;
+  bottom: 1rem;
+  right: 0;
+  overflow-y: scroll;
+}
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  &-item {
+    width: 40%;
+    padding: 0 10px;
+    text-align: center;
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+    &-name {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 }
 </style>
