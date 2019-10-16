@@ -5,6 +5,7 @@ import Cart from './views/Cart.vue'
 import Category from './views/Category.vue'
 import Profile from './views/Profile.vue'
 import Ajax from './views/Ajax.vue'
+import Detail from './views/Detail.vue'
 
 Vue.use(Router)
 
@@ -30,6 +31,10 @@ export default new Router({
       path: '/ajax',
       name: 'ajax',
       component: Ajax
+    },{
+      path:'/detail',
+      name:'detail',
+      component:Detail
     }
     
   ]
