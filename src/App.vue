@@ -1,13 +1,11 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <van-tabbar v-model="active">
-        <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-        <van-tabbar-item icon="records" to="category">分类</van-tabbar-item>
-        <van-tabbar-item icon="cart-o" to="cart">购物车</van-tabbar-item>
-        <van-tabbar-item icon="contact" to="profile">我的</van-tabbar-item>
-    </van-tabbar>
-
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <!-- <footer-bar></footer-bar> -->
+    <router-view name="footer-bar"></router-view>
     
    <!--使用flex布局实现的底部菜单栏
       <ul class="footer-bar">
@@ -28,28 +26,15 @@
 </template>
 
 <script>
+// import FooterBar from '@components/FooterBar.vue';
 export default {
-  data(){
-    return{
-      active:0
-    }
-  }
+  // components:{
+  //   FooterBar
+  // }
 }
 </script>
 
 
 <style lang="scss">
-.footer-bar{
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  width:100%;
-  height: 1rem;
-  line-height: 1rem;
-  background: #eeeeee;
-  &-item{
-    flex-grow: 1;
-    text-align: center;
-  }
-}
+
 </style>

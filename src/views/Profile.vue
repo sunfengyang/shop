@@ -77,7 +77,7 @@ export default {
             }).then(()=>{
               this.$toast.success('登录成功');
               this.loginAction(res.data.userInfo);//保存登录状态
-              this.$router.push('/');
+              this.$router.go(-1);
             }).catch(err=>{
               this.$toast.fail('保存状态失败');
               console.log(err);

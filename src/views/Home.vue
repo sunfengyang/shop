@@ -3,7 +3,7 @@
   <div class="container">
     <van-nav-bar title="首页" class="nav-tltle">
       <van-icon name="search" slot="left"></van-icon>
-      <van-icon @click="router.push('/profile')" slot="right">{{userInfo.userName}}</van-icon>
+      <van-icon @click="router.push('/profile')" slot="right">{{JSON.stringify(userInfo) ==='{}'?'未登录':uesrInfo.userName}}</van-icon>
     </van-nav-bar>
   <!-- 轮播图 -->
     <div class="carousel">
